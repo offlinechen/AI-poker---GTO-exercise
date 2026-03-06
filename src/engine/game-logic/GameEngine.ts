@@ -272,22 +272,34 @@ export class GameEngine {
   private moveToNextPlayer(): void {
     console.log('[GameEngine] moveToNextPlayer called');
     
+    // 能行动的玩家（不含 all-in）
     const activePlayers = this.state.players.filter(p => 
       p.status === 'active' || p.status === 'waiting'
     );
     
+    // 还在手牌中的玩家（含 all-in）
     const playersInHand = this.state.players.filter(p =>
       p.status !== 'folded' && p.status !== 'out'
     );
 
     console.log('[GameEngine] Active players:', activePlayers.length, 'Players in hand:', playersInHand.length);
 
-    // 如果只剩一个或没有活跃玩家，直接进入摊牌
-    if (activePlayers.length <= 1) {
-      console.log('[GameEngine] Only 1 or less active players, going to showdown');
+    // 只剩一个人在手牌中（其他人都弃牌了），直接获胜
+    if (playersInHand.length <= 1) {
+      console.log('[GameEngine] Only 1 or less players in hand, going to showdown');
       this.state.phase = 'showdown';
       this.showdown();
       return;
+    }
+    
+    // 没有能行动的玩家（都 all-in 了或只剩1个能行动），推进阶段
+    if (activePlayers.length <= 1) {
+      // 检查当前轮是否完成
+      if (activePlayers.length === 0 || this.isRoundComplete()) {
+        console.log('[GameEngine] No actionable players left, advancing phase');
+        this.advancePhase();
+        return;
+      }
     }
 
     // 特殊情况：如果所有留在手牌中的玩家都已经all-in，直接发完所有牌并摊牌

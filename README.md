@@ -15,10 +15,35 @@
 
 <p align="center">
   <a href="#-features--功能特性">Features</a> •
+  <a href="#-screenshots--界面展示">Screenshots</a> •
   <a href="#-quick-start--快速开始">Quick Start</a> •
   <a href="#-project-structure--项目结构">Structure</a> •
   <a href="#-gto-concepts--gto-概念">GTO Concepts</a> •
   <a href="#-contributing--贡献指南">Contributing</a>
+</p>
+
+---
+
+## 📸 Screenshots | 界面展示
+
+### Home Page | 主页
+<p align="center">
+  <img src="public/screenshots/home.png" alt="Home Page" width="800">
+</p>
+
+### Game Play | 游戏界面
+<p align="center">
+  <img src="public/screenshots/game.png" alt="Game Play" width="800">
+</p>
+
+### Analysis & Statistics | 数据分析
+<p align="center">
+  <img src="public/screenshots/analysis.png" alt="Analysis" width="800">
+</p>
+
+### Settings | 游戏设置
+<p align="center">
+  <img src="public/screenshots/settings.png" alt="Settings" width="800">
 </p>
 
 ---
